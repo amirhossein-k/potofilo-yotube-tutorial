@@ -3,25 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  ---color-bg: #1c1c45;
+  ---color-bg-varaint: #2b2b71;
+  ---color-primary: #4db5ff;
+  ---primary-variant: rgba(77, 181, 255, 0.4);
+  ---color-light: rgba(255, 255, 255, 0.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-color-bg text-white;
+}
+
+@layer base {
+  a {
+    @apply text-color-priamry;
+  }
+  a:hover {
+    @apply text-white;
+  }
+  footer {
+    @apply bg-color-priamry p-12 text-center text-sm mt-28;
+  }
+  footer a {
+    @apply text-color-bg;
+  }
+  header {
+    @apply h-screen pt-20 overflow-hidden;
+  }
+  nav {
+    @apply bg-[rgba(0,0,0,0.3)] w-max flex px-7 py-3 z-10 left-1/2 translate-x-[-50%] fixed bottom-8 gap-3 rounded-[3rem] backdrop-blur-lg;
+  }
+  nav a {
+    @apply bg-transparent rounded-[50%] p-3 flex text-color-light text-lg;
+  }
+  nav a:hover {
+    @apply bg-[rgba(0,0,0,0.3)];
+  }
+  nav a.active {
+    @apply bg-color-priamry text-color-bg;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply w-max rounded-md inline-block text-color-priamry py-3 px-5 border border-solid border-color-priamry;
+  }
+  .btn:hover {
+    @apply bg-white text-color-bg border-transparent;
+  }
+  .btn-primary {
+    @apply bg-color-priamry text-color-bg;
+  }
+  .container {
+    @apply sm:w-[90%] md:w-[86%] lg:w-[75%] my-0 mx-auto;
+  }
 }
